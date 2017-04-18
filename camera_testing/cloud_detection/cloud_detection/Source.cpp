@@ -31,9 +31,9 @@ int main (void)
 		return -1;
 	}
 
-	double d_width = vcap.get(CV_CAP_PROP_FRAME_WIDTH);
-	double d_height = vcap.get(CV_CAP_PROP_FRAME_HEIGHT);
-
+	int d_width = vcap.get(CV_CAP_PROP_FRAME_WIDTH);
+	int d_height = vcap.get(CV_CAP_PROP_FRAME_HEIGHT);
+	
 	cout << "Frame size got!" << endl;
 
 	
@@ -99,6 +99,13 @@ int main (void)
 		imshow("Thresholded Image", img_TresholdHSV); // show tresholded image
 		imshow("Original", frame); // show original image
 		//cvtColor(imgHSV, imgHSV, CV_BGR2GRAY);
+
+		int img_size = img_TresholdHSV.rows * img_TresholdHSV.cols;
+		img_size = img_size / 100;
+		int pixe = countNonZero(img_TresholdHSV);// / img_size;
+
+		double presntage_clouds = pixe / img_size;
+		cout << pixe << "    " << img_size << "    " << presntage_clouds << "%" << endl;
 
 		//imshow("HSV imga", imgHSV);
 		if (waitKey(30) == 27) //wait for 'esc' key press for 30ms. If 'esc' key is pressed, break loop
