@@ -5,6 +5,8 @@
 #include <iostream>
 #include<conio.h>   
 
+#include <fstream>
+
 
 using namespace cv;
 using namespace std;
@@ -47,15 +49,7 @@ int main (void)
 	int iLowV = 0;
 	int iHighV = 255;
 
-	createTrackbar("LowH", "Control", &iLowH, 179);
-	createTrackbar("LowS", "Control", &iHighH, 179);
 
-	createTrackbar("LowS", "Control", &iLowS, 255);
-
-	createTrackbar("HighS", "Control", &iHighS, 255);
-
-	createTrackbar("LowV", "Control", &iLowV, 255);
-	createTrackbar("HighV", "Control", &iHighV, 255);
 
 	//////////////////////////////////////////////
 
@@ -65,6 +59,11 @@ int main (void)
 	Mat frame;
 	Mat contour;
 	Mat first_frame;
+
+	ofstream myfile;
+	myfile.open("collected_data.csv");
+
+
 	while(1)
 	{
 		bool b_video_play = vcap.read(frame);
@@ -72,46 +71,96 @@ int main (void)
 		if (!b_video_play)
 		{
 			cout << "Cannot Read a frame" << endl;
+			myfile.close();
 			break;
 		}
 		
 ////////////////////////////////////////////////////////////////////////////////////
-		
+
 		Mat imgHSV;
 		
 		cvtColor(frame, imgHSV, COLOR_BGR2HSV);
-		//imshow("HSV imga", imgHSV);
+
 		Mat img_TresholdHSV;
+
+		/*********************************************************/
+		 iLowH = 0;
+		 iHighH = 200;
+
+		 iLowS = 0;
+		 iHighS = 10;
+
+		 iLowV = 0;
+		 iHighV = 255;
+		createTrackbar("LowH", "Control", &iLowH, 179);
+		createTrackbar("LowS", "Control", &iHighH, 179);
+
+		createTrackbar("LowS", "Control", &iLowS, 255);
+
+		createTrackbar("HighS", "Control", &iHighS, 255);
+
+		createTrackbar("LowV", "Control", &iLowV, 255);
+		createTrackbar("HighV", "Control", &iHighV, 255);
 
 		inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), img_TresholdHSV);
 
-		//imshow("Threshold img", img_TresholdHSV);
-
 		erode(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
 		dilate(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
 
-		//imshow("Threshold img", img_TresholdHSV);
-
 		dilate(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
 		erode(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
-
-		imshow("HSV image", imgHSV);
-		imshow("Thresholded Image", img_TresholdHSV); // show tresholded image
-		imshow("Original", frame); // show original image
+		/**********************************************************/
+		//imshow("HSV image", imgHSV);
+		//imshow("Thresholded Image", img_TresholdHSV); // show tresholded image
+		//imshow("Original", frame); // show original image
 		//cvtColor(imgHSV, imgHSV, CV_BGR2GRAY);
 
 		int img_size = img_TresholdHSV.rows * img_TresholdHSV.cols;
 		img_size = img_size / 100;
 		int pixe = countNonZero(img_TresholdHSV);// / img_size;
+		double presntage_clouds_light = pixe / img_size;
 
-		double presntage_clouds = pixe / img_size;
-		cout << pixe << "    " << img_size << "    " << presntage_clouds << "%" << endl;
+		/*********************************************************/
+		iLowH = 0;
+		iHighH = 200;
+
+		iLowS = 0;
+		iHighS = 10;
+
+		iLowV = 0;
+		iHighV = 255;
+		createTrackbar("LowH", "Control", &iLowH, 179);
+		createTrackbar("LowS", "Control", &iHighH, 179);
+
+		createTrackbar("LowS", "Control", &iLowS, 255);
+
+		createTrackbar("HighS", "Control", &iHighS, 255);
+
+		createTrackbar("LowV", "Control", &iLowV, 255);
+		createTrackbar("HighV", "Control", &iHighV, 255);
+
+		inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), img_TresholdHSV);
+
+		erode(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+		dilate(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+
+		dilate(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+		erode(img_TresholdHSV, img_TresholdHSV, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)));
+		/***************************************************/
+		pixe = countNonZero(img_TresholdHSV);// / img_size;
+		double presntage_clouds_havy = pixe / img_size;
+
+		cout << pixe << "    " << img_size << "    " << presntage_clouds_light << ","<< presntage_clouds_havy << "%" << endl;
+
+		myfile << presntage_clouds_light << "," << presntage_clouds_havy << "\n";
 
 		//imshow("HSV imga", imgHSV);
 		if (waitKey(30) == 27) //wait for 'esc' key press for 30ms. If 'esc' key is pressed, break loop
 		{
 			cout << "esc key is pressed by user" << endl;
+			myfile.close();
 			break;
 		}
 	}
+	
 }
