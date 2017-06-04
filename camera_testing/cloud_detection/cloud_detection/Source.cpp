@@ -22,15 +22,18 @@ const Scalar SCALAR_RED = Scalar(0.0, 0.0, 255.0);
 
 int main (void)
 {
-	VideoCapture vcap;
+	VideoCapture vcap(0);
 
 	time_t now_time;
 
-	vcap.open("http://192.168.137.18:8080/video"); // ip address of the video stream
+	//vcap.open("http://192.168.43.1:8080/video"); // ip address of the video stream
 
 	if (!vcap.isOpened())// if video streaming does not catched
 	{
 		cout << "Cannot open the video" << endl;
+		while (true) {
+
+		}
 		return -1;
 	}
 
@@ -77,7 +80,6 @@ int main (void)
 
 	while(1)
 	{
-
 		time(&now_time);
 		bool b_video_play = vcap.read(frame);
 		//video.write(frame);
