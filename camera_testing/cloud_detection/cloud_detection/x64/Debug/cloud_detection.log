@@ -1,7 +1,7 @@
 ﻿  Source.cpp
-c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(37): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(38): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(70): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(71): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(41): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(42): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(72): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection\cloud_detection\source.cpp(73): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   cloud_detection.vcxproj -> C:\Users\Champika\Documents\GITHUB\FSPI-cloud_imaging\camera_testing\cloud_detection\x64\Debug\cloud_detection.exe
   cloud_detection.vcxproj -> C:\Users\Champika\Documents\GITHUB\FSPI-cloud_imaging\camera_testing\cloud_detection\x64\Debug\cloud_detection.pdb (Partial PDB)

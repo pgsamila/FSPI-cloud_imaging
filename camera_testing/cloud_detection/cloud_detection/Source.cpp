@@ -1,3 +1,20 @@
+/**
+*  @file    Source.cpp
+*  @author  Pelaketigamage P.G.A.S.
+*  @date    30/03/2017
+*  @version 12.0
+*
+*  @brief Final Year Project - 
+*		  Electrical & Electronic Engineering Department
+*		  Univeristy of Peradeniya
+*
+*  @section DESCRIPTION
+*
+*  This code will identify clouds or white color object
+*  from its color by converting into a HSV image
+*
+*/
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -23,14 +40,18 @@ const Scalar SCALAR_RED = Scalar(0.0, 0.0, 255.0);
 int main (void)
 {
 	VideoCapture vcap;
+	vcap.open("C:\\test.avi");
 
 	time_t now_time;
 
-	vcap.open("http://192.168.137.18:8080/video"); // ip address of the video stream
+	//vcap.open("http://192.168.43.1:8080/video"); // ip address of the video stream
 
 	if (!vcap.isOpened())// if video streaming does not catched
 	{
 		cout << "Cannot open the video" << endl;
+		while (true) {
+
+		}
 		return -1;
 	}
 
@@ -49,8 +70,6 @@ int main (void)
 
 	int iLowV = 10;
 	int iHighV = 255;
-
-
 
 	//////////////////////////////////////////////
 
@@ -73,11 +92,8 @@ int main (void)
 	//VideoWriter videoHSV("saturday_video_HSV1.avi", CV_FOURCC('M', 'J', 'P', 'G'), 10, Size(frame_width, frame_height), true);
 	//VideoWriter videoTresh("saturday_video_Tresh.avi", CV_FOURCC('M', 'J', 'P', 'G'), 10, Size(frame_width, frame_height), true);
 
-
-
 	while(1)
 	{
-
 		time(&now_time);
 		bool b_video_play = vcap.read(frame);
 		//video.write(frame);
