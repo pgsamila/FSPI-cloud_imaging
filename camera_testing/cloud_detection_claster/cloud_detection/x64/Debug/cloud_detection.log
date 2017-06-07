@@ -1,0 +1,6 @@
+﻿  Source.cpp
+c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection_claster\cloud_detection\source.cpp(77): warning C4244: '=': conversion from 'float' to 'uchar', possible loss of data
+c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection_claster\cloud_detection\source.cpp(78): warning C4244: '=': conversion from 'float' to 'uchar', possible loss of data
+c:\users\champika\documents\github\fspi-cloud_imaging\camera_testing\cloud_detection_claster\cloud_detection\source.cpp(79): warning C4244: '=': conversion from 'float' to 'uchar', possible loss of data
+  cloud_detection.vcxproj -> C:\Users\Champika\Documents\GITHUB\FSPI-cloud_imaging\camera_testing\cloud_detection_claster\x64\Debug\cloud_detection.exe
+  cloud_detection.vcxproj -> C:\Users\Champika\Documents\GITHUB\FSPI-cloud_imaging\camera_testing\cloud_detection_claster\x64\Debug\cloud_detection.pdb (Partial PDB)

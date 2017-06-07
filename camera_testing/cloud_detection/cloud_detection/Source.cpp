@@ -1,3 +1,20 @@
+/**
+*  @file    Source.cpp
+*  @author  Pelaketigamage P.G.A.S.
+*  @date    30/03/2017
+*  @version 12.0
+*
+*  @brief Final Year Project - 
+*		  Electrical & Electronic Engineering Department
+*		  Univeristy of Peradeniya
+*
+*  @section DESCRIPTION
+*
+*  This code will identify clouds or white color object
+*  from its color by converting into a HSV image
+*
+*/
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -22,7 +39,8 @@ const Scalar SCALAR_RED = Scalar(0.0, 0.0, 255.0);
 
 int main (void)
 {
-	VideoCapture vcap(0);
+	VideoCapture vcap;
+	vcap.open("C:\\test.avi");
 
 	time_t now_time;
 
@@ -53,8 +71,6 @@ int main (void)
 	int iLowV = 10;
 	int iHighV = 255;
 
-
-
 	//////////////////////////////////////////////
 
 	//local variables
@@ -75,8 +91,6 @@ int main (void)
 	//VideoWriter video("saturday_video1.avi", CV_FOURCC('M', 'J', 'P', 'G'), 10, Size(frame_width, frame_height), true);
 	//VideoWriter videoHSV("saturday_video_HSV1.avi", CV_FOURCC('M', 'J', 'P', 'G'), 10, Size(frame_width, frame_height), true);
 	//VideoWriter videoTresh("saturday_video_Tresh.avi", CV_FOURCC('M', 'J', 'P', 'G'), 10, Size(frame_width, frame_height), true);
-
-
 
 	while(1)
 	{
